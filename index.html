@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arquivo do Vazio — Outcome Memories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+<div class="noise" aria-hidden="true"></div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-mark">◈</span>
+    <span class="brand-text">ARQUIVO&nbsp;DO&nbsp;VAZIO</span>
+  </div>
+  <nav class="site-nav">
+    <a href="#hero">Início</a>
+    <a href="#sobre">O Jogo</a>
+    <a href="#roster">Personagens</a>
+    <a href="#youtubers">Criadores BR</a>
+  </nav>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero" class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">FANSITE NÃO-OFICIAL · SONIC.EXE</p>
+    <h1 class="glitch" data-text="OUTCOME MEMORIES">OUTCOME MEMORIES</h1>
+    <p class="hero-sub">
+      Um guia completo — e não-oficial — sobre os Sobreviventes e Executores do jogo assimétrico de terror
+      de Roblox inspirado em <em>Sonic.exe</em>. Passivas, habilidades, estratégias de mesa e os canais
+      brasileiros que documentaram essa fuga sem fim.
+    </p>
+    <div class="hero-cta">
+      <a href="#roster" class="btn btn-primary">Ver personagens</a>
+      <a href="#youtubers" class="btn btn-ghost">Ver criadores BR</a>
+    </div>
+    <div class="hero-ring" aria-hidden="true"></div>
+  </div>
+  <p class="hero-timer">O ANEL ABRE EM <span id="ringTimer">1:19</span></p>
+</section>
+
+<!-- ===================== SOBRE / AVISO ===================== -->
+<section id="sobre" class="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <p class="eyebrow eyebrow-light">O QUE É</p>
+      <h2>Uma fuga entre timelines</h2>
+      <p>
+        <strong>Sonic.EXE: Outcome Memories</strong> foi um jogo de terror de sobrevivência assimétrico
+        criado por <strong>1sobbe</strong> na plataforma Roblox, fortemente inspirado em
+        <em>Sonic.exe: The Disaster</em>. Personagens do universo Sonic são arrancados de suas
+        linhas do tempo e jogados dentro de um "Vazio": um grupo de <strong>Sobreviventes</strong>
+        precisa resistir até o cronômetro liberar um anel de fuga, enquanto um jogador controla o
+        <strong>Executor</strong>, uma versão demoníaca e distorcida de Sonic, cujo único objetivo é
+        eliminar o grupo inteiro antes que isso aconteça.
+      </p>
+      <p>
+        O desenvolvimento do jogo foi suspenso em janeiro de 2026 após conflitos internos entre os
+        desenvolvedores, e o projeto foi oficialmente descontinuado pouco depois. As informações deste
+        site foram reunidas a partir de wikis da comunidade e vídeos de jogadores — como o próprio jogo
+        já não recebe atualizações oficiais e passou por várias versões (v0.1, v0.2...), kits e
+        equilíbrio de personagens podem variar do que você lembra de ter jogado.
+      </p>
+    </div>
+    <div class="about-facts">
+      <div class="fact-card">
+        <span class="fact-label">Criador</span>
+        <span class="fact-value">1sobbe</span>
+      </div>
+      <div class="fact-card">
+        <span class="fact-label">Plataforma</span>
+        <span class="fact-value">Roblox</span>
+      </div>
+      <div class="fact-card">
+        <span class="fact-label">Inspiração</span>
+        <span class="fact-value">Sonic.exe: The Disaster</span>
+      </div>
+      <div class="fact-card">
+        <span class="fact-label">Jogadores por sala</span>
+        <span class="fact-value">8</span>
+      </div>
+      <div class="fact-card">
+        <span class="fact-label">Status</span>
+        <span class="fact-value">Descontinuado (jan/2026)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROSTER ===================== -->
+<section id="roster" class="roster">
+  <div class="roster-head">
+    <p class="eyebrow eyebrow-light">O ELENCO</p>
+    <h2>Sobreviventes &amp; Executores</h2>
+    <p class="roster-sub">Clique em um card para abrir o dossiê completo: passivas, habilidades e como o time competitivo costuma jogar cada um.</p>
+  </div>
+
+  <div class="faction-toggle" role="tablist" aria-label="Escolher facção">
+    <button class="faction-btn is-active" data-faction="survivors" role="tab" aria-selected="true">
+      <span class="dot dot-survivor"></span> Sobreviventes
+    </button>
+    <button class="faction-btn" data-faction="executioners" role="tab" aria-selected="false">
+      <span class="dot dot-executioner"></span> Executores
+    </button>
+  </div>
+
+  <div id="cardGrid" class="card-grid"></div>
+</section>
+
+<!-- ===================== DETAIL MODAL ===================== -->
+<div id="detailOverlay" class="detail-overlay" hidden>
+  <div class="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detailName">
+    <button id="detailClose" class="detail-close" aria-label="Fechar">✕</button>
+    <header class="detail-header">
+      <span id="detailFaction" class="detail-faction"></span>
+      <h3 id="detailName"></h3>
+      <p id="detailTagline" class="detail-tagline"></p>
+    </header>
+
+    <div class="detail-body">
+      <div class="detail-block">
+        <h4>Passiva(s)</h4>
+        <ul id="detailPassives"></ul>
+      </div>
+      <div class="detail-block">
+        <h4>Habilidades</h4>
+        <ul id="detailAbilities"></ul>
+      </div>
+      <div class="detail-block detail-block-strategy">
+        <h4>Estratégias usadas por jogadores</h4>
+        <ul id="detailStrategy"></ul>
+      </div>
+      <div class="detail-block">
+        <h4>Prós &amp; Contras</h4>
+        <div class="pros-cons">
+          <div>
+            <span class="pc-label pc-pro">Pontos fortes</span>
+            <ul id="detailPros"></ul>
+          </div>
+          <div>
+            <span class="pc-label pc-con">Pontos fracos</span>
+            <ul id="detailCons"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== YOUTUBERS ===================== -->
+<section id="youtubers" class="youtubers">
+  <div class="roster-head">
+    <p class="eyebrow eyebrow-light">COMUNIDADE BR</p>
+    <h2>Criadores brasileiros que jogaram Outcome Memories</h2>
+    <p class="roster-sub">
+      Outcome Memories é um jogo de nicho dentro do já-de-nicho universo de fangames de Sonic.exe no
+      Roblox — por isso a cena brasileira dedicada exclusivamente a ele é pequena, formada principalmente
+      por canais de Roblox/terror que cobriram o jogo em lives e vídeos avulsos, e não por canais 100%
+      dedicados ao título.
+    </p>
+  </div>
+
+  <div id="creatorGrid" class="creator-grid"></div>
+
+  <div class="disclaimer-box">
+    <strong>Sobre os números de inscritos:</strong> contagens de inscritos mudam o tempo todo e não
+    conseguimos confirmar, no momento da criação deste site, um número exato e atualizado para cada canal
+    listado acima — todos apareceram em buscas com conteúdo publicado sobre o jogo, mas recomendamos
+    conferir a contagem atual diretamente no perfil de cada criador antes de citar um número específico.
+    Se você conhece outros canais brasileiros (grandes ou pequenos, acima de 300 inscritos) que gravaram
+    sobre o jogo, essa lista está longe de ser exaustiva.
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>
+    Site de fã, sem fins lucrativos, feito por admiradores de Outcome Memories. Sonic the Hedgehog e todos
+    os personagens relacionados pertencem à SEGA / Sonic Team. Outcome Memories foi criado por 1sobbe e
+    equipe, e teve o desenvolvimento encerrado em janeiro de 2026. Nenhum criador de conteúdo listado aqui
+    tem qualquer vínculo com este site.
+  </p>
+</footer>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
